@@ -10,7 +10,7 @@ class AddToCartManager:
     async def add_product_to_cart(self, name: str, user_id):
 
         product = await Products.Model.objects.find_product(name)
-        if not db.find_one({"name": name}):
+        if not db.find_one({"name": name, "user_id": user_id}):
             product['user_id'] = user_id
             product['quantity'] = 1
             db.insert_one(product)
