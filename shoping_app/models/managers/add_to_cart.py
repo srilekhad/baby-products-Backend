@@ -48,6 +48,19 @@ class AddToCartManager:
         result = db.delete_many(filter_query)
 
     @validate_arguments
+    async def decrement_product(self, name: str, user_id):
+
+        filter_query = {"name": name, "user_id": user_id}
+
+        update_query = {"$inc": {"quantity": -1}}
+        db.update_one(filter_query, update_query)
+
+        product = db.find(products = db.find({"user_id": user_id}))
+        
+        if(product['quantity'] == 0):
+            db.delete_one(filter_query)
+
+    @validate_arguments
     async def remove_product_from_cart(self, name: str, user_id):
 
         filter_query = {"name": name, "user_id": user_id}
