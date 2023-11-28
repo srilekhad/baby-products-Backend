@@ -7,6 +7,7 @@ class Products(BaseModel):
     price: float
     description: str
     image: str
+    category: str
 
     class Model:
         name = 'Products'
