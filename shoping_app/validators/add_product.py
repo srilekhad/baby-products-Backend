@@ -6,3 +6,4 @@ class AddProductRequestFormat(BaseModel):
     price: float
     description: str
     image: str
+    category: str
