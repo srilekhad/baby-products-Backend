@@ -46,3 +46,10 @@ class AddToCartManager:
         filter_query = {"user_id": user_id}
 
         result = db.delete_many(filter_query)
+
+    @validate_arguments
+    async def remove_product_from_cart(self, name: str, user_id):
+
+        filter_query = {"name": name, "user_id": user_id}
+
+        result = db.delete_one(filter_query)
