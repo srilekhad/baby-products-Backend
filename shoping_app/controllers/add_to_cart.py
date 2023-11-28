@@ -52,7 +52,7 @@ async def delete_product(name: str, request: Request, auth_token: str = Header(a
     user_data = request.user_data
     user_id = user_data.pop('_id')
 
-    await AddToCart.Model.objects.remove_product_from_cart(name, user_id)
+    await AddToCart.Model.objects.decrement_product(name, user_id)
     
     return {
         "message": "Products removed"
