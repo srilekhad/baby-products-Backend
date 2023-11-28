@@ -58,8 +58,9 @@ class AddToCartManager:
 
         product = db.find(filter_query)
         
-        if(product['quantity'] <= 0):
-            db.delete_one(filter_query)
+        for doc in product:
+            if(doc['quantity'] <= 0):
+                db.delete_one(filter_query)
 
     @validate_arguments
     async def remove_product_from_cart(self, name: str, user_id):
