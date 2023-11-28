@@ -57,7 +57,7 @@ class AddToCartManager:
 
         product = db.find(filter_query)
         
-        if(product['quantity'] == 0):
+        if(product['quantity'] <= 0):
             db.delete_one(filter_query)
 
     @validate_arguments
