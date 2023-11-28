@@ -55,7 +55,7 @@ class AddToCartManager:
         update_query = {"$inc": {"quantity": -1}}
         db.update_one(filter_query, update_query)
 
-        product = db.find(products = db.find({"user_id": user_id}))
+        product = db.find(filter_query)
         
         if(product['quantity'] == 0):
             db.delete_one(filter_query)
